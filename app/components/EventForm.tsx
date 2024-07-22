@@ -12,6 +12,7 @@ const EventForm: React.FC<EventFormProps> = ({ onSubmit, event }) => {
   const [date, setDate] = useState(event?.date || '');
   const [location, setLocation] = useState(event?.location || '');
   const [organizer, setOrganizer] = useState(event?.organizer || '');
+  const [image, setImage] = useState(event?.image || '');
   const [tickets, setTickets] = useState<Ticket[]>(event?.tickets || [{ type: '', price: '', quantity: 0 }]);
 
   const handleTicketChange = (index: number, key: keyof Ticket, value: string) => {
@@ -26,7 +27,7 @@ const EventForm: React.FC<EventFormProps> = ({ onSubmit, event }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit({ title, description, date, location, organizer, tickets });
+    onSubmit({ title, description, date, location, organizer, image, tickets });
   };
 
   return (
@@ -77,6 +78,16 @@ const EventForm: React.FC<EventFormProps> = ({ onSubmit, event }) => {
           name="organizer"
           value={organizer}
           onChange={(e) => setOrganizer(e.target.value)}
+          className="border p-2 w-full rounded"
+        />
+      </div>
+      <div>
+        <label className="block mb-2 font-bold">Image URL</label>
+        <input
+          type="text"
+          name="image"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
           className="border p-2 w-full rounded"
         />
       </div>
