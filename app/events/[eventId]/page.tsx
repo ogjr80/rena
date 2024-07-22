@@ -5,9 +5,10 @@ import { fetchEvents } from '../../../lib/fetchEvents';
 import { useEffect, useState } from 'react';
 import { Event } from '../../types/Event';
 
-export default function EventDetails() {
+export default function EventDetails({params}:{params:any, }) {
+  const {eventId} = params; 
   const searchParams = useSearchParams();
-  const eventId = searchParams.get('eventId');
+  // const eventId = seasrchParams.get('eventId');
   const events: Event[] = fetchEvents();
   const [event, setEvent] = useState<Event | null>(null);
 
