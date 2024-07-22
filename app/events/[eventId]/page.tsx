@@ -1,11 +1,12 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { fetchEvents } from '../../../lib/fetchEvents';
 import { useEffect, useState } from 'react';
 import { Event } from '../../types/Event';
 
 export default function EventDetails({params}:{params:any, }) {
+  const router = useRouter(); 
   const {eventId} = params; 
   const searchParams = useSearchParams();
   // const eventId = seasrchParams.get('eventId');
@@ -23,6 +24,12 @@ export default function EventDetails({params}:{params:any, }) {
 
   return (
     <div>
+        <button
+        className="bg-gray-500 text-white p-2 rounded mb-4"
+        onClick={() => router.back()}
+      >
+        Back
+      </button>
       <img src={event.image} alt={event.title} className="w-full h-64 object-cover rounded-t-lg" />
       <h1 className="text-2xl font-bold mb-4">{event.title}</h1>
       <p className="mb-4">{event.description}</p>
